@@ -1,12 +1,17 @@
-(define (square x) (* x x))
+(define (num x) (* x x))
 
-(define (cont-frac  n d  k start)
+(define (deno x) (+ (* 2 x) 1))
+
+
+
+
+(define (tan-cf x k numx denox)
+ 	(/ x ( - 1 (cont-frac x numx denox k 1))))
+
+
+(define (cont-frac val nump denop k start)
 	(if(equal? start k)
-	(/ (square n) (+ start (* k 2)))
-	(/ (square n) (- (+ d (* start 2)) (cont-frac n d  k  (+ 1 start))))))
-
-
-(define (tan-cf x k)
- (/ x ( - 1 (cont-frac x 1 k 1))))
+	(/ (nump val) (denop start))
+	(/ (nump val) (- (denop start) (cont-frac val nump denop  k (+ start 1))))))
 
 
