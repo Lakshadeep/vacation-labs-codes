@@ -1,25 +1,9 @@
-
-
-
-(define (iterative-improve num good-enough? improve-guess)
-  (define (close-enough? v1 v2)
-    (< (abs (- v1 v2)) 0.00001))
- 
-  (define (AVERAGE X Y) 
-          (/ (+ X Y) 2))
-   
-  (define (improve guess x)
-      (average guess (/ x guess)))
-   
-  (define  (SQUARE X) (* X X))
-  
- (lambda (x)
-    
-    (if(close-enough? x (improve x num) )
-         (improve x num)
-         (((iterative-improve num close-enough? improve) (improve x num))
-         )))
+(define (iterative-improve good-enough? improve)
+  (lambda (guess)
+    (if (good-enough? guess) 
+        guess
+        ((iterative-improve good-enough? improve) (improve guess)))))
  
 (define (sqrt x)
-  	;(lambda (y)
-	     ((iterative-improve x close-enough? improve) 1.0)))
+  ((iterative-improve (lambda (guess) (< (abs (- guess (/ (+ guess (/ x guess)) 2))) 0.001))
+                      (lambda (guess) (/ (+ guess (/ x guess)) 2))) 1)) 
