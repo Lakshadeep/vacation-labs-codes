@@ -6,8 +6,8 @@
   		1 ))
 
 
-(define (cont-frac nump denop n d  k start)
+(define (cont-frac nump denop k start)
 	(if(equal? start k)
-	(/ n d)
-	(/ n (+ d (cont-frac nump denop (nump (+ start 1)) (denop (+ start 1)) k (+ start 1))))))
+	(/ (nump start) (denop start))
+	(/ (nump start) (+ (denop start) (cont-frac nump denop  k (+ start 1))))))
 
