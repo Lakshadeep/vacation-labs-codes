@@ -7,7 +7,6 @@
 
 
 (define (tan-cf x k)
- (/ x ( + 1 (cont-frac x 1 k 1)))
-)
+ (/ x ( - 1 (cont-frac x 1 k 1))))
 
 
