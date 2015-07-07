@@ -6,12 +6,12 @@
 
 
 (define (tan-cf x k numx denox)
- 	(/ x ( - 1 (cont-frac x numx denox k 1))))
+ 	(/ x ( - 1 (cont-frac (lambda (x) (* x x))  denox k 1) )))
 
 
-(define (cont-frac val nump denop k start)
+(define (cont-frac nump denop k start)
 	(if(equal? start k)
-	(/ (nump val) (denop start))
-	(/ (nump val) (+ (denop start) (cont-frac val nump denop  k (+ start 1))))))
+	(/ (nump start) (denop start))
+	(/ (nump start) (+ (denop start) (cont-frac nump denop  k (+ start 1))))))
 
 
